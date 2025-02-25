@@ -1,0 +1,9 @@
+fastapi
+strawberry-graphql
+uvicorn
+SQLAlchemy
+psycopg2
+redis
+aiokafka
+alembic
+python-dotenv

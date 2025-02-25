@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.log
+*.sqlite3
+*.db
+
+# Virtual Environment
+venv/
+env/
+*.venv
+Pipfile
+Pipfile.lock
+
+# Environment Variables
+.env
+.envrc
+
+# Logs
+logs/
+*.log
+nohup.out
+
+# Alembic Migrations
+alembic/versions/*.pyc
+alembic/versions/*.pyo
+alembic/versions/*.pyd
+alembic/versions/__pycache__/
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+*.pid
+
+# PostgreSQL Data
+pg_data/
+postgres_data/
+
+# Redis Data
+redis_data/
+
+# Kafka Data
+kafka_data/
+
+# MacOS & Linux System Files
+.DS_Store
+*.swp
+*.swo
+*.swn

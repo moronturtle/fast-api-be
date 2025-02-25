@@ -1,0 +1,12 @@
+{
+  "name": "FastAPI Dev Container",
+  "workspaceFolder": "/app",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "backend",
+  "remoteUser": "root",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-python.vscode-pylance"]
+    }
+  }
+}
