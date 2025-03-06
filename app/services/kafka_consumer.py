@@ -1,6 +1,7 @@
 from aiokafka import AIOKafkaConsumer
 import asyncio
 
+
 async def consume_messages():
     consumer = AIOKafkaConsumer(
         "news_topic",
@@ -13,6 +14,7 @@ async def consume_messages():
             print(f"Received: {msg.value.decode('utf-8')}")
     finally:
         await consumer.stop()
+
 
 if __name__ == "__main__":
     asyncio.run(consume_messages())
