@@ -1,6 +1,8 @@
 import os
+
 from sqlalchemy import engine_from_config, pool
 from sqlalchemy.engine import create_engine
+
 from alembic import context
 
 # Load database credentials from environment variables
