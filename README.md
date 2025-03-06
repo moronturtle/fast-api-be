@@ -1,6 +1,7 @@
 # A FastAPI backend Project with GraphQL, PostgreSQL, Redis, and Kafka
 ## installation and Run
-- install Dev Containers
+- install Dev Containers on your visual code
+- create .env copy from .env example
 - docker-compose up --build
 - Ctrl + Shift + P or Cmd + Shift + P on Mac
 - Dev Containers: Attach to Running Container

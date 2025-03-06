@@ -1,10 +1,17 @@
+import os
 from sqlalchemy import engine_from_config, pool
 from sqlalchemy.engine import create_engine
 from alembic import context
-import os
 
-# Get DB URL from environment variables
-DATABASE_URL = os.getenv("DATABASE_URL")
+# Load database credentials from environment variables
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
+POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
+
+# Construct database URL
+DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 config = context.config
 config.set_main_option("sqlalchemy.url", DATABASE_URL)

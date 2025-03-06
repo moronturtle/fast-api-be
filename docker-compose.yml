@@ -5,15 +5,11 @@ services:
     build: .
     container_name: news-portal-backend
     env_file:
-    - .env  
+      - .env  
     depends_on:
       - db
       - redis
       - kafka
-    environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/newsdb
-      - REDIS_URL=redis://redis:6379
-      - KAFKA_BROKER=kafka:9092
     ports:
       - "8000:8000"
 
@@ -21,9 +17,9 @@ services:
     image: postgres:15
     container_name: news-portal-db
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: newsdb
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
@@ -32,6 +28,9 @@ services:
   redis:
     image: redis:latest
     container_name: news-portal-redis
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
     ports:
       - "6379:6379"
 
@@ -39,7 +38,7 @@ services:
     image: confluentinc/cp-zookeeper:latest
     container_name: news-portal-zookeeper
     environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_CLIENT_PORT: ${ZOOKEEPER_PORT}
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -47,8 +46,8 @@ services:
     depends_on:
       - zookeeper
     environment:
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ZOOKEEPER_CONNECT: ${ZOOKEEPER_HOST}:${ZOOKEEPER_PORT}
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${KAFKA_HOST}:${KAFKA_PORT}
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:
       - "9092:9092"
