@@ -25,3 +25,8 @@
 - Mac/Linux : source venv/bin/activate or Windows (PowerShell): venv\Scripts\activate
 - pip install -r requirements.txt
 - uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+
+## Run linting (black & isort)
+black .
+isort .
