@@ -1,4 +1,5 @@
 {
     "python.defaultInterpreterPath": "PATH_TO_VENV_INTERPRETER",
-    "python.terminal.activateEnvironment": true
+    "python.terminal.activateEnvironment": true,
+    "python.analysis.extraPaths": ["./venv/lib/python3.11/site-packages"]
 }

@@ -8,7 +8,7 @@ ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 
 app = FastAPI(
     title="News Portal API",
-    description="A FastAPI backend for a news portal with GraphQL, PostgreSQL, Redis, and Kafka.",
+    description="A FastAPI backend for a news portal with GraphQL, PostgreSQL, and Redis",
     version="1.0.0",
     docs_url="/docs" if ENVIRONMENT == "development" else None,
     redoc_url="/redoc" if ENVIRONMENT == "development" else None,

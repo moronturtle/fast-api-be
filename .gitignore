@@ -16,6 +16,7 @@ Pipfile.lock
 # Environment Variables
 .env
 .envrc
+.vscode/*
 
 # Logs
 logs/

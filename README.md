@@ -1,4 +1,4 @@
-# A FastAPI backend Project with GraphQL, PostgreSQL, Redis, and Kafka
+# A FastAPI backend Project with GraphQL, PostgreSQL, and Redis
 ## installation and Run
 - install Dev Containers on your visual code
 - create .env copy from .env example
