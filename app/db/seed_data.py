@@ -1,11 +1,12 @@
 import os
 import uuid
-
+from dotenv import load_dotenv  # Add this
 from sqlalchemy.orm import Session
-
 from app.db.database import SessionLocal
 from app.db.models.user import User, UserRole
 
+# Load .env file
+load_dotenv()
 
 def seed_admin():
     db: Session = SessionLocal()
@@ -28,9 +29,9 @@ def seed_admin():
 
     db.close()
 
-
 if __name__ == "__main__":
     RUN_SEED = os.getenv("RUN_SEED", "False").lower() == "true"
+    print(f"RUN_SEED: {RUN_SEED}")
     if RUN_SEED:
         seed_admin()
     else:
