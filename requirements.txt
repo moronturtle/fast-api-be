@@ -7,3 +7,5 @@ redis
 aiokafka
 alembic
 python-dotenv
+black 
+isort

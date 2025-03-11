@@ -1,9 +1,13 @@
 import os
 
-from sqlalchemy import engine_from_config, pool
+from sqlalchemy import pool
 from sqlalchemy.engine import create_engine
 
 from alembic import context
+from app.db.database import Base
+from app.db.models import *
+
+target_metadata = Base.metadata
 
 # Load database credentials from environment variables
 POSTGRES_USER = os.getenv("POSTGRES_USER")
@@ -24,7 +28,7 @@ engine = create_engine(DATABASE_URL, poolclass=pool.NullPool)
 def run_migrations_online():
     connectable = engine
     with connectable.connect() as connection:
-        context.configure(connection=connection, target_metadata=None)
+        context.configure(connection=connection, target_metadata=target_metadata)
         with context.begin_transaction():
             context.run_migrations()
 

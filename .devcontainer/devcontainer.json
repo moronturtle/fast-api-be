@@ -3,6 +3,9 @@
   "workspaceFolder": "/app",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "backend",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/app,type=bind"
+  ],
   "remoteUser": "root",
   "customizations": {
     "vscode": {
