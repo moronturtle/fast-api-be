@@ -14,5 +14,6 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Run Alembic migrations before starting FastAPI
+# will running seed_data if RUN_SEED is True in .env
 # CMD alembic upgrade head && python app/db/seed_data.py && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 CMD bash -c "alembic upgrade head && python app/db/seed_data.py && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
