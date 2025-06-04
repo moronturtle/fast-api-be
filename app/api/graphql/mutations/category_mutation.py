@@ -1,6 +1,8 @@
 import strawberry
-from app.api.graphql.types.category_type import CategoryType
+
 from app.api.graphql.resolvers.category_resolver import resolve_create_category
+from app.api.graphql.types.category_type import CategoryType
+
 
 @strawberry.type
 class CategoryMutation:

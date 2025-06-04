@@ -1,13 +1,16 @@
 from fastapi import APIRouter, Depends
-from app.db.models.categories import Categories
+
 from app.db.database import get_db
+from app.db.models.categories import Categories
 from app.middleware.exceptions import NotFoundException
 
 router = APIRouter()
 
+
 @router.get("/health")
 def health_check():
     return {"status": "OK"}
+
 
 @router.get("/categories/{id}")
 def get_category_by_id(id: str, db=Depends(get_db)):

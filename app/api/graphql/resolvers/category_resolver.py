@@ -1,15 +1,18 @@
 import uuid
 
 import strawberry
+
 from app.db.database import SessionLocal
 from app.db.models.categories import Categories
 from app.middleware.exceptions import NotFoundException
+
 
 def resolve_all_categories():
     db = SessionLocal()
     categories = db.query(Categories).all()
     db.close()
     return categories
+
 
 def resolve_category_by_id(id: str):
     try:
@@ -23,6 +26,7 @@ def resolve_category_by_id(id: str):
     if not category:
         raise strawberry.exceptions.GraphQLError(f"Category with id {id} not found.")
     return category
+
 
 def resolve_create_category(category: str):
     db = SessionLocal()

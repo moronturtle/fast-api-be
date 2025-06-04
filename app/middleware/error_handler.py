@@ -1,7 +1,9 @@
 from fastapi import FastAPI, Request, status
+from fastapi.exceptions import HTTPException, RequestValidationError
 from fastapi.responses import JSONResponse
-from fastapi.exceptions import RequestValidationError, HTTPException
+
 from app.middleware.exceptions import NotFoundException
+
 
 def register_error_handlers(app: FastAPI):
 
@@ -14,13 +16,15 @@ def register_error_handlers(app: FastAPI):
                 "error": {
                     "type": "HTTPException",
                     "detail": exc.detail,
-                    "code": exc.status_code
-                }
-            }
+                    "code": exc.status_code,
+                },
+            },
         )
 
     @app.exception_handler(RequestValidationError)
-    async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    async def validation_exception_handler(
+        request: Request, exc: RequestValidationError
+    ):
         return JSONResponse(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             content={
@@ -28,9 +32,9 @@ def register_error_handlers(app: FastAPI):
                 "error": {
                     "type": "ValidationError",
                     "detail": exc.errors(),
-                    "code": 422
-                }
-            }
+                    "code": 422,
+                },
+            },
         )
 
     @app.exception_handler(NotFoundException)
@@ -42,9 +46,9 @@ def register_error_handlers(app: FastAPI):
                 "error": {
                     "type": "NotFoundException",
                     "detail": exc.detail,
-                    "code": 404
-                }
-            }
+                    "code": 404,
+                },
+            },
         )
 
     @app.exception_handler(Exception)
@@ -53,10 +57,6 @@ def register_error_handlers(app: FastAPI):
             status_code=500,
             content={
                 "success": False,
-                "error": {
-                    "type": "Exception",
-                    "detail": str(exc),
-                    "code": 500
-                }
-            }
+                "error": {"type": "Exception", "detail": str(exc), "code": 500},
+            },
         )
