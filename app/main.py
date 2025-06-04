@@ -3,6 +3,8 @@ import os
 from fastapi import FastAPI
 
 from app.api.routers import router as api_router
+from app.api.graphql.graphql import graphql_app
+from app.middleware.error_handler import register_error_handlers
 
 ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 
@@ -16,8 +18,11 @@ app = FastAPI(
 )
 
 app.include_router(api_router, prefix="/api")
+app.include_router(graphql_app, prefix="/graphql")
+register_error_handlers(app)
 
 
-@app.get("/")
-def root():
-    return {"message": "Welcome to the News Portal API GET"}
+# @app.get("/")
+# def root():
+#     return {"message": "Welcome to the News Portal API GET"}
+
