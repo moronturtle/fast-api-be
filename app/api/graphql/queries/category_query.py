@@ -1,6 +1,6 @@
+import strawberry
 from typing import List
 
-import strawberry
 
 from app.api.graphql.resolvers.category_resolver import (
     resolve_all_categories,
